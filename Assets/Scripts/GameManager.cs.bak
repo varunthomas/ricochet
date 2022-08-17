@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 	}
 	public void ScoreUp(int val)
 	{
-		//Debug.Log("val " + val + "score before " +score);
+		Debug.Log("val " + val + "score before " +score);
 		score=score+val;
 		Debug.Log("score after " + score);
 		textScore.text = score.ToString();

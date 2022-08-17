@@ -14,16 +14,13 @@ public class Ball : MonoBehaviour
 	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		Debug.Log("Collison");
 		if(collision.gameObject.tag == "FallCheck")
 		{
-			Debug.Log("Restart");
 			GameManager.instance.Restart();
 		}
 		else if(collision.gameObject.tag == "Paddle")
 		{
-			GameManager.instance.ScoreUp();
-			Debug.Log("No restart");
+			GameManager.instance.ScoreUp(1);
 		}
 	}
     // Start is called before the first frame update
@@ -36,7 +33,6 @@ public class Ball : MonoBehaviour
     void Update()
     {
 		rb.velocity = bounceForce* (rb.velocity.normalized);
-		Debug.Log("Vel " + rb.velocity);
 	if (!gameStarted)
 	{
 		if(Input.anyKeyDown)
