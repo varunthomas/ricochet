@@ -7,8 +7,11 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
 	public GameObject GameStartUI;
+	int remBricks;
 	int score;
+	bool isWin;
 	public Text textScore;
+	public Text winText;
 
 	private void Awake()
 	{
@@ -17,13 +20,26 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        remBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
+		Debug.Log("rem " + remBricks);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isWin == true)
+		{
+			Debug.Log("win true");
+			var balls = GameObject.FindGameObjectsWithTag("Ball");
+			foreach (var ball in balls)
+			{
+				Destroy(ball);
+			}
+			if(Input.anyKeyDown)
+			{
+				Restart();
+			}
+		}
     }
 	public void Restart()
 	{
@@ -33,8 +49,19 @@ public class GameManager : MonoBehaviour
 	{
 		//Debug.Log("val " + val + "score before " +score);
 		score=score+val;
+		if (val == 5)
+		{
+			remBricks--;
+		}
+		Debug.Log("new rem " + remBricks);
 		Debug.Log("score after " + score);
 		textScore.text = score.ToString();
+		if (remBricks == 0)
+		{
+			winText.gameObject.SetActive(true);
+			textScore.gameObject.SetActive(false);
+			isWin = true;
+		}
 	}
 	public void GameStart()
 	{

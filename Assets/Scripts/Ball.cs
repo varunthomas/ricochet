@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
 	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+
 		if(collision.gameObject.tag == "FallCheck")
 		{
 			GameManager.instance.Restart();
@@ -33,18 +34,26 @@ public class Ball : MonoBehaviour
     void Update()
     {
 		rb.velocity = bounceForce* (rb.velocity.normalized);
-	if (!gameStarted)
-	{
-		if(Input.anyKeyDown)
+		if (!gameStarted)
 		{
+			if(Input.anyKeyDown)
+			{
 			
-			StartBounce();
-			gameStarted = true;
-			GameManager.instance.GameStart();
-		}
+				StartBounce();
+				gameStarted = true;
+				GameManager.instance.GameStart();
+			}
 		
-	}
-        
+		}
+		/*if (GameManager.instance.isWin == true)
+		{
+			Debug.Log("win true");
+			//Dstroy(gameObject);
+			if(Input.anyKeyDown)
+			{
+				GameManager.instance.Restart();
+			}
+		}*/
     }
 
 	void StartBounce()
