@@ -35,13 +35,12 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		rb.velocity = bounceForce* (rb.velocity.normalized);
-		Debug.Log("Vel " + rb.velocity);
 	if (!gameStarted)
 	{
 		if(Input.anyKeyDown)
 		{
-			
+			rb.velocity = bounceForce* (rb.velocity.normalized);
+			Debug.Log("Vel " + rb.velocity);
 			StartBounce();
 			gameStarted = true;
 			GameManager.instance.GameStart();
