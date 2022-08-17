@@ -58,8 +58,12 @@ public class Ball : MonoBehaviour
 
 	void StartBounce()
 	{
-		
-		Vector2 randomDirection = new Vector2(Random.Range(-1,1),1);
+		float nonZero;
+		while((nonZero = Random.Range(-1,1)) == 0 )
+		{
+		}
+		Debug.Log("x dir" + nonZero);
+		Vector2 randomDirection = new Vector2(nonZero,1);
 		rb.AddForce(randomDirection*bounceForce, ForceMode2D.Impulse);
 	}	
 

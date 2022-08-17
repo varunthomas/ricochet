@@ -37,9 +37,7 @@ public class GameManager : MonoBehaviour
 			}
 			if(Input.anyKeyDown)
 			{
-				//Restart();
-				StartBounce();
-				GameManager.instance.GameStart();
+				Restart();
 			}
 		}
     }

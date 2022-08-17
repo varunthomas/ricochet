@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         remBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
-		Debug.Log("rem " + remBricks);
     }
 
     // Update is called once per frame
@@ -29,7 +28,6 @@ public class GameManager : MonoBehaviour
     {
         if (isWin == true)
 		{
-			Debug.Log("win true");
 			var balls = GameObject.FindGameObjectsWithTag("Ball");
 			foreach (var ball in balls)
 			{
@@ -53,8 +51,6 @@ public class GameManager : MonoBehaviour
 		{
 			remBricks--;
 		}
-		Debug.Log("new rem " + remBricks);
-		Debug.Log("score after " + score);
 		textScore.text = score.ToString();
 		if (remBricks == 0)
 		{

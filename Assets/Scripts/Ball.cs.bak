@@ -45,7 +45,7 @@ public class Ball : MonoBehaviour
 			}
 		
 		}
-		if (GameManager.instance.isWin == true)
+		/*if (GameManager.instance.isWin == true)
 		{
 			Debug.Log("win true");
 			//Dstroy(gameObject);
@@ -53,13 +53,18 @@ public class Ball : MonoBehaviour
 			{
 				GameManager.instance.Restart();
 			}
-		}
+		}*/
     }
 
 	void StartBounce()
 	{
-		
-		Vector2 randomDirection = new Vector2(Random.Range(-1,1),1);
+		float nonZero = 0;
+		while((nonZero == 0 )
+		{
+			nonZero = Random.Range(-1,1))
+		}
+		Debug.Log("x dir" + nonZero);
+		Vector2 randomDirection = new Vector2(nonZero,1);
 		rb.AddForce(randomDirection*bounceForce, ForceMode2D.Impulse);
 	}	
 
