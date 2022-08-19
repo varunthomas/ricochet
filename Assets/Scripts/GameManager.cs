@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 	bool isWin;
 	public Text textScore;
 	public Text winText;
+	
+
 
 	private void Awake()
 	{
@@ -20,7 +22,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		
+		Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+		Debug.Log(stageDimensions.x);
         remBricks = SceneGenerator.instance.getBrickCount();
 		Debug.Log("rem bricks " + remBricks);
 		//SceneGenerator.instance.toggleAllBricks(false);
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		
+
         if (isWin == true)
 		{
 			var balls = GameObject.FindGameObjectsWithTag("Ball");
