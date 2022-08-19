@@ -20,12 +20,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        remBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
-    }
+		
+        remBricks = SceneGenerator.instance.getBrickCount();
+		Debug.Log("rem bricks " + remBricks);
+		//SceneGenerator.instance.toggleAllBricks(false);
+	}
 
     // Update is called once per frame
     void Update()
     {
+		
         if (isWin == true)
 		{
 			var balls = GameObject.FindGameObjectsWithTag("Ball");
@@ -61,7 +65,10 @@ public class GameManager : MonoBehaviour
 	}
 	public void GameStart()
 	{
+		Debug.Log("Game start");
+		
 		GameStartUI.SetActive(false);
 		textScore.gameObject.SetActive(true);
+		SceneGenerator.instance.toggleAllBricks(true);
 	}
 }

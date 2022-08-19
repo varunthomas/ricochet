@@ -62,7 +62,6 @@ public class Ball : MonoBehaviour
 		while((nonZero = Random.Range(-1,1)) == 0 )
 		{
 		}
-		Debug.Log("x dir" + nonZero);
 		Vector2 randomDirection = new Vector2(nonZero,1);
 		rb.AddForce(randomDirection*bounceForce, ForceMode2D.Impulse);
 	}	

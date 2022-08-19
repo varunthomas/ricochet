@@ -58,10 +58,9 @@ public class Ball : MonoBehaviour
 
 	void StartBounce()
 	{
-		float nonZero = 0;
-		while((nonZero == 0 )
+		float nonZero;
+		while((nonZero = Random.Range(-1,1)) == 0 )
 		{
-			nonZero = Random.Range(-1,1))
 		}
 		Debug.Log("x dir" + nonZero);
 		Vector2 randomDirection = new Vector2(nonZero,1);
