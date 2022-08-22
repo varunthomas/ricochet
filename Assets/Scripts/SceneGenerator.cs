@@ -10,7 +10,10 @@ public class SceneGenerator : MonoBehaviour
 	public GameObject tile;
 	GameObject[] brickArray;
 	private int numBricks;
+	public int remBalls = 1;
 	const int MaxBricks = 130;
+	
+	public Sprite specialSprite;
 	private void Awake()
 	{
 		instance = this;
@@ -30,6 +33,11 @@ public class SceneGenerator : MonoBehaviour
 				{
 					Debug.Log("looping " + numBricks);
 					brickArray[numBricks] = Instantiate(tile, new Vector2(i, 0.324f*j),Quaternion.identity) as GameObject;
+					/*if(Random.Range(0,9) == 1)
+					{
+						specialBrick = tile.GetComponent<SpriteRenderer>();
+						specialBrick.sprite = specialSprite;
+					}*/
 					numBricks++;
 				}					
 			}
@@ -54,6 +62,26 @@ public class SceneGenerator : MonoBehaviour
 			brickArray[i].gameObject.SetActive(toggle);
 		}
 	}
+	
+	public void setSpecialBrick()
+	{
+		for(var i =0; i<numBricks; i++)
+		{
+			if(Random.Range(0,1) == 0)
+			{
+				brickArray[i].gameObject.tag = "SpecialBrick";
+				setSpecialSprite(brickArray[i]);
+			}
+		}
+	}
+	
+	void setSpecialSprite(GameObject tempTile)
+	{
+		SpriteRenderer specialBrick;
+		specialBrick = tempTile.GetComponent<SpriteRenderer>();
+		specialBrick.sprite = specialSprite;
+	}
+	
 	public int getBrickCount()
 	{
 		return numBricks;

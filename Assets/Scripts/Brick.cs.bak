@@ -4,34 +4,27 @@ using UnityEngine;
 //.32
 public class Brick : MonoBehaviour
 {
+	private bool hasCollided = false;
     // Start is called before the first frame update
     void Start()
     {
-		Debug.Log("Start called");
-		int x = 0;
-		for(var i = -2.568f; i <= 2.568f; i=i+0.642f)
-		{
-			Debug.Log("looping " + x);
-			x++;
-			if (x >100)
-			{
-				Debug.Log("issue\n");
-				break;
-			}
-			Instantiate(gameObject, new Vector2(i, 3),Quaternion.identity);
-		}
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void LateUpdate()
+	{
+		this.hasCollided = false;
+	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 			if(collision.gameObject.tag == "Ball")
 			{
+				if(hasCollided == true){ return; }
+				hasCollided = true;
+				Debug.Log("collided brick");
 				GameManager.instance.ScoreUp(5);
+				Debug.Log("Destroy brick");
 				Destroy(gameObject);
 			}
 

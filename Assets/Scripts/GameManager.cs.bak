@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 	public GameObject GameStartUI;
 	int remBricks;
+	public bool gameStarted;
 	int score;
 	bool isWin;
 	public Text textScore;
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 		Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-		Debug.Log(stageDimensions.y);
+		Debug.Log(stageDimensions.x);
         remBricks = SceneGenerator.instance.getBrickCount();
 		Debug.Log("rem bricks " + remBricks);
 		//SceneGenerator.instance.toggleAllBricks(false);
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
 		score=score+val;
 		if (val == 5)
 		{
+			
 			remBricks--;
 		}
 		textScore.text = score.ToString();
@@ -73,5 +75,6 @@ public class GameManager : MonoBehaviour
 		GameStartUI.SetActive(false);
 		textScore.gameObject.SetActive(true);
 		SceneGenerator.instance.toggleAllBricks(true);
+		SceneGenerator.instance.setSpecialBrick();
 	}
 }

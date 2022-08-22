@@ -1465,6 +1465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 400772654}
+  specialSprite: {fileID: 21300000, guid: 445cf53189ce9104d92b85e45216b8b4, type: 3}
 --- !u!4 &1657648172
 Transform:
   m_ObjectHideFlags: 0

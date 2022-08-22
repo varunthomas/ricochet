@@ -5,8 +5,9 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
 
+	GameObject clone;
 	Rigidbody2D rb;
-	bool gameStarted;
+	Rigidbody2D rbClone;
 	public float bounceForce;
 	private void Awake()
 	{
@@ -17,11 +18,33 @@ public class Ball : MonoBehaviour
 
 		if(collision.gameObject.tag == "FallCheck")
 		{
-			GameManager.instance.Restart();
+			if (SceneGenerator.instance.remBalls == 1)
+			{
+				Debug.Log("Restart called remballs 0");
+				GameManager.instance.Restart();
+			}
+			else
+			{
+				Destroy(gameObject);
+				SceneGenerator.instance.remBalls--;
+			}
 		}
 		else if(collision.gameObject.tag == "Paddle")
 		{
 			GameManager.instance.ScoreUp(1);
+		}
+		else if(collision.gameObject.tag == "SpecialBrick")
+		{
+			//Debug.Log("Hit special brick " + gameObject.tag);
+			SceneGenerator.instance.remBalls++;
+			var vec = new Vector2(gameObject.transform.position.x,gameObject.transform.position.y);
+			clone = Instantiate(gameObject, vec,Quaternion.identity);
+			rbClone = clone.GetComponent<Rigidbody2D>();
+			rbClone.AddForce(vec*bounceForce, ForceMode2D.Impulse);
+		}
+		else if (collision.gameObject.tag == "Ball")
+        {
+			Physics2D.IgnoreCollision(collision.gameObject.GetComponent<CircleCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
 		}
 	}
     // Start is called before the first frame update
@@ -34,13 +57,13 @@ public class Ball : MonoBehaviour
     void Update()
     {
 		rb.velocity = bounceForce* (rb.velocity.normalized);
-		if (!gameStarted)
+		if (!GameManager.instance.gameStarted)
 		{
 			if(Input.anyKeyDown)
 			{
 			
 				StartBounce();
-				gameStarted = true;
+				GameManager.instance.gameStarted = true;
 				GameManager.instance.GameStart();
 			}
 		

@@ -8,6 +8,7 @@ TagManager:
   - FallCheck
   - Ball
   - Brick
+  - SpecialBrick
   layers:
   - Default
   - TransparentFX
