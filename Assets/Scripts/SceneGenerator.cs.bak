@@ -25,7 +25,7 @@ public class SceneGenerator : MonoBehaviour
     {
 		brickArray = new GameObject[MaxBricks];
         Debug.Log("Start called");
-		for(var i = -2.568f; i <= 4.494f; i=i+0.642f)
+		for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
 		{
 			for(var j =0; j <10; j++)
 			{
@@ -67,7 +67,7 @@ public class SceneGenerator : MonoBehaviour
 	{
 		for(var i =0; i<numBricks; i++)
 		{
-			if(Random.Range(0,10) == 0)
+			if(Random.Range(0,1) == 0)
 			{
 				brickArray[i].gameObject.tag = "SpecialBrick";
 				setSpecialSprite(brickArray[i]);
