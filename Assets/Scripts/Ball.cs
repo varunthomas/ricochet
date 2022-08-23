@@ -44,7 +44,7 @@ public class Ball : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Ball")
         {
-			Physics2D.IgnoreCollision(collision.gameObject.GetComponent<CircleCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
+			Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), gameObject.GetComponent<PolygonCollider2D>());
 		}
 	}
     // Start is called before the first frame update
