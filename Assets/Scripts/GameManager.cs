@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
-	public GameObject GameStartUI;
+	public GameObject startUI;
 	int remBricks;
 	public bool gameStarted;
 	int score;
 	bool isWin;
 	public Text textScore;
-	public Text winText;
+	public GameObject winText;
 	
 
 
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 		textScore.text = score.ToString();
 		if (remBricks == 0)
 		{
-			winText.gameObject.SetActive(true);
+			winText.SetActive(true);
 			textScore.gameObject.SetActive(false);
 			isWin = true;
 		}
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("Game start");
 		
-		GameStartUI.SetActive(false);
+		startUI.SetActive(false);
 		textScore.gameObject.SetActive(true);
 		SceneGenerator.instance.toggleAllBricks(true);
 		SceneGenerator.instance.setSpecialBrick();

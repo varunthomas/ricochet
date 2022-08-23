@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
-	public GameObject GameStartUI;
+	public GameObject startUI;
 	int remBricks;
 	public bool gameStarted;
 	int score;
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 		score=score+val;
 		if (val == 5)
 		{
-			
+			Debug.Log("rem bricks " + remBricks);
 			remBricks--;
 		}
 		textScore.text = score.ToString();
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("Game start");
 		
-		GameStartUI.SetActive(false);
+		startUI.SetActive(false);
 		textScore.gameObject.SetActive(true);
 		SceneGenerator.instance.toggleAllBricks(true);
 		SceneGenerator.instance.setSpecialBrick();

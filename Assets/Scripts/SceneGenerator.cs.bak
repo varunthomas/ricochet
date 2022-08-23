@@ -67,7 +67,7 @@ public class SceneGenerator : MonoBehaviour
 	{
 		for(var i =0; i<numBricks; i++)
 		{
-			if(Random.Range(0,1) == 0)
+			if(Random.Range(0,10) == 0)
 			{
 				brickArray[i].gameObject.tag = "SpecialBrick";
 				setSpecialSprite(brickArray[i]);
