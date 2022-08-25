@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
 	public GameObject startUI;
-	int remBricks;
+	public int remBricks;
 	public bool gameStarted;
 	int score;
-	bool isWin;
+	public bool isWin;
 	public Text textScore;
 	public GameObject winText;
 	
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		
 		Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 		Debug.Log(stageDimensions.x);
         //remBricks = SceneGenerator.instance.getBrickCount();
@@ -41,10 +42,10 @@ public class GameManager : MonoBehaviour
 			{
 				Destroy(ball);
 			}
-			if(Input.anyKeyDown)
+			/*if(Input.anyKeyDown)
 			{
 				Restart();
-			}
+			}*/
 		}
     }
 	public void Restart()
@@ -64,8 +65,9 @@ public class GameManager : MonoBehaviour
 		textScore.text = score.ToString();
 		if (remBricks == 0)
 		{
-			winText.SetActive(true);
-			textScore.gameObject.SetActive(false);
+			//winText.SetActive(true);
+			//textScore.gameObject.SetActive(false);
+			SceneGenerator.instance.numBricks = 0;
 			isWin = true;
 		}
 	}

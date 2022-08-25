@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
 
-	GameObject clone;
+	GameObject cloneBall;
 	Rigidbody2D rb;
 	Rigidbody2D rbClone;
 	private bool hasCollided = false;
@@ -46,7 +46,7 @@ public class Ball : MonoBehaviour
 			{
 				Destroy(gameObject);
 				SceneGenerator.instance.remBalls--;
-				//Debug.Log("rem balls " + SceneGenerator.instance.remBalls);
+				Debug.Log("rem balls " + SceneGenerator.instance.remBalls);
 			}
 		}
 		/*else if(collision.gameObject.tag == "Brick")
@@ -78,15 +78,15 @@ public class Ball : MonoBehaviour
 			//rbClone.AddForce(vec*bounceForce, ForceMode2D.Impulse);
 
 		}*/
-		else if (collision.gameObject.tag == "Ball")
+		/*else if (collision.gameObject.tag == "Ball")
         {
 			Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), gameObject.GetComponent<PolygonCollider2D>());
-		}
+		}*/
 	}
     // Start is called before the first frame update
     void Start()
     {
-        
+        SceneGenerator.instance.toggleAllBricks(false);
     }
 
     // Update is called once per frame
@@ -106,23 +106,30 @@ public class Ball : MonoBehaviour
 		}
 		/*if (GameManager.instance.isWin == true)
 		{
-			Debug.Log("win true");
-			//Dstroy(gameObject);
-			if(Input.anyKeyDown)
+			var balls = GameObject.FindGameObjectsWithTag("Ball");
+			foreach (var ball in balls)
 			{
-				GameManager.instance.Restart();
+				Destroy(ball);
 			}
+			Debug.Log("Destroyed balls");
 		}*/
     }
 
 	void StartBounce()
 	{
-		float nonZero;
+		
+		/*float nonZero;
+		
 		while((nonZero = Random.Range(-1,1)) == 0 )
 		{
 		}
-		Vector2 randomDirection = new Vector2(nonZero,1);
-		rb.AddForce(randomDirection*bounceForce, ForceMode2D.Impulse);
+		Vector2 initPosition = new Vector2(0,-3.08f);
+		Vector2 randomDirection = new Vector2(-0.5f,1);
+
+		cloneBall = SceneGenerator.instance.generateBall(initPosition);
+		rbClone = cloneBall.GetComponent<Rigidbody2D>();
+		rbClone.AddForce(randomDirection*bounceForce, ForceMode2D.Impulse);*/
+		SceneGenerator.instance.generateBall(bounceForce);
 	}	
 
 }

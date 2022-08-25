@@ -22,13 +22,20 @@ public class Brick : MonoBehaviour
 		this.hasCollided = false;
 	}
     // Update is called once per frame
-	//void Update()
-	//{
-		//var pos = transform.position;
-		//var newY = startY - height*speed;//*Mathf.Sin(Time.time * speed);
-		//startY = newY;
-		//transform.position = new Vector3(pos.x, newY, pos.z);
-	//}
+	void Update()
+	{
+		if(GameManager.instance.isWin == true)
+		{
+			Debug.Log("Genrating bricks");
+			SceneGenerator.instance.generateBricks();
+		}
+		else
+			Debug.Log("not Genrating bricks");
+		/*var pos = transform.position;
+		var newY = startY - height*speed;//*Mathf.Sin(Time.time * speed);
+		startY = newY;
+		transform.position = new Vector3(pos.x, newY, pos.z);*/
+	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if(collision.gameObject.tag == "Ball")
@@ -47,7 +54,7 @@ public class Brick : MonoBehaviour
 				vec.y = vec.y+1;
 				clone = Instantiate(collision.gameObject, collision.gameObject.transform.position,collision.gameObject.transform.rotation);
 				rbClone = clone.GetComponent<Rigidbody2D>();
-				rbClone.AddForce(vec*5f, ForceMode2D.Impulse);
+				rbClone.AddForce(vec*bounceForce, ForceMode2D.Impulse);
 			}
 		}
 		else if(collision.gameObject.tag == "Paddle" || collision.gameObject.tag == "FallCheck")

@@ -22,13 +22,14 @@ public class Brick : MonoBehaviour
 		this.hasCollided = false;
 	}
     // Update is called once per frame
-	//void Update()
-	//{
-		//var pos = transform.position;
-		//var newY = startY - height*speed;//*Mathf.Sin(Time.time * speed);
-		//startY = newY;
-		//transform.position = new Vector3(pos.x, newY, pos.z);
-	//}
+	void Update()
+	{
+
+		/*var pos = transform.position;
+		var newY = startY - height*speed;//*Mathf.Sin(Time.time * speed);
+		startY = newY;
+		transform.position = new Vector3(pos.x, newY, pos.z);*/
+	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if(collision.gameObject.tag == "Ball")

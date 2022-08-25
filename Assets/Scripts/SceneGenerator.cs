@@ -8,8 +8,11 @@ public class SceneGenerator : MonoBehaviour
 {
 	public static SceneGenerator instance;
 	public GameObject tile;
+	public GameObject cloneBall;
+	GameObject clone;
+	Rigidbody2D rbClone;
 	GameObject[] brickArray;
-	private int numBricks;
+	public int numBricks;
 	public int remBalls = 1;
 	const int MaxBricks = 1000;
 	
@@ -23,6 +26,7 @@ public class SceneGenerator : MonoBehaviour
 	//.324
     void Start()
     {
+		
 		brickArray = new GameObject[MaxBricks];
         Debug.Log("Start called");
 		/*for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
@@ -34,7 +38,9 @@ public class SceneGenerator : MonoBehaviour
 					numBricks++;
 			}
 		}*/
-		for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
+		generateBricks();
+		SceneGenerator.instance.toggleAllBricks(false);
+		/*for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
 		{
 			for(var j =0; j <10; j++)
 			{
@@ -46,7 +52,7 @@ public class SceneGenerator : MonoBehaviour
 					numBricks++;
 				}					
 			}
-		}
+		}*/
 		
 		Debug.Log("Start finished");
     }
@@ -54,7 +60,24 @@ public class SceneGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameManager.instance.isWin == true)
+		{
+			var balls = GameObject.FindGameObjectsWithTag("Ball");
+			foreach (var ball in balls)
+			{
+				Destroy(ball);
+			}
+			Debug.Log("Destroyed balls");
+			Debug.Log("Genrating bricks");
+			generateBricks();
+			setSpecialBrick();
+			generateBall(5);
+			GameManager.instance.remBricks = getBrickCount();
+			remBalls = 1;
+			Debug.Log("brick count " + GameManager.instance.remBricks);
+			GameManager.instance.isWin = false;
+		}
+		//Debug.Log("count outside " + GameObject.FindGameObjectsWithTag("Ball").Length);
     }
 	public void toggleAllBricks(bool toggle)
 	{
@@ -87,5 +110,32 @@ public class SceneGenerator : MonoBehaviour
 	{
 		return numBricks;
 	}
-	
+	public void generateBricks()
+	{
+		for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
+		{
+			for(var j =0; j <10; j++)
+			{
+				if (Random.Range(0,2) == 1)
+				{
+					var v = new Vector2(i, 0.324f*j);
+					Debug.Log("looping " + numBricks + " " + v);
+					brickArray[numBricks] = Instantiate(tile, new Vector2(i, 0.324f*j),Quaternion.identity) as GameObject;
+
+					numBricks++;
+				}					
+			}
+		}		
+	}
+
+	public void generateBall(float bounceForce)
+	{
+		Vector2 initPosition = new Vector2(0,-3.08f);
+		Vector2 randomDirection = new Vector2(-0.5f,1);
+		clone = Instantiate(cloneBall, initPosition, Quaternion.identity);
+		rbClone = clone.GetComponent<Rigidbody2D>();
+		rbClone.AddForce(randomDirection*bounceForce, ForceMode2D.Impulse);
+		//return Instantiate(cloneBall, dir, Quaternion.identity) as GameObject;
+	}
 }
+
