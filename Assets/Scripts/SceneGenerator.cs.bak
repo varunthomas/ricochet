@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -8,13 +9,17 @@ public class SceneGenerator : MonoBehaviour
 {
 	public static SceneGenerator instance;
 	public GameObject tile;
+	public GameObject paddle;
 	public GameObject cloneBall;
+	public Text NextLevel;
 	GameObject clone;
 	Rigidbody2D rbClone;
 	GameObject[] brickArray;
 	public int numBricks;
 	public int remBalls = 1;
 	const int MaxBricks = 1000;
+	float timer = 0;
+	bool timerReached = false;
 	
 	public Sprite specialSprite;
 	private void Awake()
@@ -62,20 +67,35 @@ public class SceneGenerator : MonoBehaviour
     {
         if(GameManager.instance.isWin == true)
 		{
+			timerReached = false;
 			var balls = GameObject.FindGameObjectsWithTag("Ball");
 			foreach (var ball in balls)
 			{
 				Destroy(ball);
 			}
+			
 			Debug.Log("Destroyed balls");
 			Debug.Log("Genrating bricks");
-			generateBricks();
-			setSpecialBrick();
-			generateBall(5);
-			GameManager.instance.remBricks = getBrickCount();
-			remBalls = 1;
-			Debug.Log("brick count " + GameManager.instance.remBricks);
-			GameManager.instance.isWin = false;
+			NextLevel.gameObject.SetActive(true);
+			if (!timerReached)
+				timer += Time.deltaTime;
+
+			if (!timerReached && timer > 5)
+			{
+				
+				generateBricks();
+				setSpecialBrick();
+				generateBall(5);
+				GameManager.instance.remBricks = getBrickCount();
+				remBalls = 1;
+				Debug.Log("brick count " + GameManager.instance.remBricks);
+				GameManager.instance.isWin = false;
+				NextLevel.gameObject.SetActive(false);
+				//Set to false so that We don't run this again
+				timerReached = true;
+				timer = 0;
+			}
+
 		}
 		//Debug.Log("count outside " + GameObject.FindGameObjectsWithTag("Ball").Length);
     }
@@ -114,7 +134,7 @@ public class SceneGenerator : MonoBehaviour
 	{
 		for(var i = -7.704f; i <= -5f; i=i+0.642f)
 		{
-			for(var j =0; j <2; j++)
+			for(var j =0; j <1; j++)
 			{
 				if (Random.Range(0,2) == 1)
 				{
