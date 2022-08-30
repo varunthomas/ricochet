@@ -1253,6 +1253,7 @@ GameObject:
   - component: {fileID: 800404204}
   - component: {fileID: 800404206}
   - component: {fileID: 800404205}
+  - component: {fileID: 800404207}
   m_Layer: 5
   m_Name: HighScoreText
   m_TagString: Untagged
@@ -1322,6 +1323,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800404203}
   m_CullTransparentMesh: 1
+--- !u!114 &800404207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800404203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.56078434, g: 0.5921569, b: 0.83137256, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &831721064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,6 +1400,7 @@ GameObject:
   - component: {fileID: 949061738}
   - component: {fileID: 949061740}
   - component: {fileID: 949061739}
+  - component: {fileID: 949061741}
   m_Layer: 5
   m_Name: HighScore
   m_TagString: Untagged
@@ -1453,6 +1470,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949061737}
   m_CullTransparentMesh: 1
+--- !u!114 &949061741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949061737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.55920255, g: 0.5900176, b: 0.8301887, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1064685613
 GameObject:
   m_ObjectHideFlags: 0

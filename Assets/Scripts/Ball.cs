@@ -9,8 +9,8 @@ public class Ball : MonoBehaviour
 	GameObject cloneBall;
 	Rigidbody2D rb;
 	Rigidbody2D rbClone;
-	private bool hasCollided = false;
-	private bool hasCollidedBrick = false;
+	//private bool hasCollided = false;
+	//private bool hasCollidedBrick = false;
 	public float bounceForce;
 	public Button PlayButton;
 
@@ -27,11 +27,11 @@ public class Ball : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 	}
-	void LateUpdate()
+	/*void LateUpdate()
 	{
 		this.hasCollided = false;
 		this.hasCollidedBrick = false;
-	}
+	}*/
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 

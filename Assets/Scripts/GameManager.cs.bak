@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
 		startUI.SetActive(false);
 		textScore.gameObject.SetActive(true);
 		HighScore.gameObject.SetActive(false);
+		HighScoreText.gameObject.SetActive(false);
 		SceneGenerator.instance.toggleAllBricks(true);
 		SceneGenerator.instance.setSpecialBrick();
 	}

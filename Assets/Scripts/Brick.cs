@@ -4,8 +4,7 @@ using UnityEngine;
 //.32
 public class Brick : MonoBehaviour
 {
-	float speed = 0.02f;
-	float height = 0.01f;
+
 	float startY;
 	Rigidbody2D rbClone;
 	GameObject clone;

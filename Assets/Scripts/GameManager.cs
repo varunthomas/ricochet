@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
 	}
 	public void ScoreUp(int val)
 	{
-		//Debug.Log("val " + val + "score before " +score);
 		score=score+val;
 		if (val == 5)
 		{
