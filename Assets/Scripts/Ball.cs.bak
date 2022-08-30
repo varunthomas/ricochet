@@ -101,7 +101,7 @@ public class Ball : MonoBehaviour
 			{
 			
 				StartBounce();
-				PlayButton.SetActive(true);
+				PlayButton.gameObject.SetActive(true);
 				GameManager.instance.gameStarted = true;
 				GameManager.instance.GameStart();
 			}

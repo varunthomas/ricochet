@@ -42,6 +42,7 @@ public class Ball : MonoBehaviour
 			if (SceneGenerator.instance.remBalls == 1)
 			{
 				Debug.Log("Restart called remballs 0");
+				GameManager.instance.SetHighScore();
 				GameManager.instance.Restart();
 			}
 			else
