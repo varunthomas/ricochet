@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
 	int score;
 	public bool isWin;
 	public Text textScore;
-	public GameObject winText;
-	
+	//public GameObject winText;
 
 
 	private void Awake()

@@ -134,7 +134,7 @@ public class SceneGenerator : MonoBehaviour
 	{
 		for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
 		{
-			for(var j =0; j <1; j++)
+			for(var j =0; j <10; j++)
 			{
 				if (Random.Range(0,2) == 1)
 				{

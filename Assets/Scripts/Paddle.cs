@@ -62,5 +62,6 @@ public class Paddle : MonoBehaviour
 		{
 			rb.velocity = Vector2.zero;
 		}
+		
 	}
 }

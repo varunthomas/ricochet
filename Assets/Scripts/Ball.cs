@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Ball : MonoBehaviour
 	private bool hasCollided = false;
 	private bool hasCollidedBrick = false;
 	public float bounceForce;
+	public Button PlayButton;
 
 	void OnEnable()
 	{
@@ -99,6 +101,7 @@ public class Ball : MonoBehaviour
 			{
 			
 				StartBounce();
+				PlayButton.gameObject.SetActive(true);
 				GameManager.instance.gameStarted = true;
 				GameManager.instance.GameStart();
 			}

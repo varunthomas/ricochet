@@ -41,6 +41,8 @@ public class Paddle : MonoBehaviour
 	}
 	void TouchMove()
 	{
+		if (!PauseMenu.GamePaused)
+		{
 		if(GameManager.instance.isWin == false && Input.GetMouseButton(0))
 		{
 			Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -55,13 +57,13 @@ public class Paddle : MonoBehaviour
 		}
 		else if( GameManager.instance.isWin == true)
 		{
-			transform.position.x = -0.03;
-			transform.position.y = -4.89;
+			transform.position = originalPos;
 			rb.velocity = Vector2.zero;
 		}
 		else
 		{
 			rb.velocity = Vector2.zero;
+		}
 		}
 	}
 }
