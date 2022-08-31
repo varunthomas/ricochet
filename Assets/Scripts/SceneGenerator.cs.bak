@@ -88,7 +88,7 @@ public class SceneGenerator : MonoBehaviour
 				generateBall(5);
 				GameManager.instance.remBricks = getBrickCount();
 				remBalls = 1;
-				Debug.Log("brick count " + GameManager.instance.remBricks);
+				//Debug.Log("brick count " + GameManager.instance.remBricks);
 				GameManager.instance.isWin = false;
 				NextLevel.gameObject.SetActive(false);
 				//Set to false so that We don't run this again
@@ -132,14 +132,14 @@ public class SceneGenerator : MonoBehaviour
 	}
 	public void generateBricks()
 	{
-		for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
+		for(var i = -7.704f; i <= -5f; i=i+0.642f)
 		{
-			for(var j =0; j <10; j++)
+			for(var j =0; j <2; j++)
 			{
 				if (Random.Range(0,2) == 1)
 				{
 					var v = new Vector2(i, 0.324f*j);
-					Debug.Log("looping " + numBricks + " " + v);
+					//Debug.Log("looping " + numBricks + " " + v);
 					brickArray[numBricks] = Instantiate(tile, new Vector2(i, 0.324f*j),Quaternion.identity) as GameObject;
 
 					numBricks++;

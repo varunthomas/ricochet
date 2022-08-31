@@ -9,6 +9,9 @@ TagManager:
   - Ball
   - Brick
   - SpecialBrick
+  - BoundaryTop
+  - BoundaryLeft
+  - BoundaryRight
   layers:
   - Default
   - TransparentFX

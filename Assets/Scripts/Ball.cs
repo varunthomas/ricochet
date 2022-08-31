@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
@@ -12,6 +13,7 @@ public class Ball : MonoBehaviour
 	//private bool hasCollided = false;
 	//private bool hasCollidedBrick = false;
 	public float bounceForce;
+	float temp = 0f;
 	public Button PlayButton;
 	public Button AudioToggle;
 
@@ -52,6 +54,58 @@ public class Ball : MonoBehaviour
 				SceneGenerator.instance.remBalls--;
 				//Debug.Log("rem balls " + SceneGenerator.instance.remBalls);
 			}
+		}
+		else if (collision.gameObject.tag == "BoundaryLeft")
+		{
+			//Debug.Log("x " + transform.position.x + "y " + transform.position.y);
+			if(Math.Abs(temp-transform.position.x) < 1.5f)
+			{
+				Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
+				Vector2 vec = new Vector2(transform.position.x, transform.position.y);
+				
+				vec.x = 3f;
+				rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);
+			}	
+			
+			temp = transform.position.x;
+			/*Vector2 vec = new Vector2(transform.position.x, transform.position.y);
+			if(vec.x >0)
+			{
+				vec.x = 3f;
+				
+			}
+			else
+			{
+				vec.x = -3f;
+			}
+			vec.y = -vec.y;
+			rb.AddForce(vec*bounceForce,ForceMode2D.Impulse);*/
+		}
+		else if (collision.gameObject.tag == "BoundaryRight")
+		{
+			//Debug.Log("x " + transform.position.x + "y " + transform.position.y);
+			if(Math.Abs(temp-transform.position.x) < 1)
+			{
+				Debug.Log("perpendicular right x " + transform.position.x + " y " + transform.position.y);
+				Vector2 vec = new Vector2(transform.position.x, transform.position.y);
+				
+				vec.x = -3f;
+				rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);
+			}	
+			
+			temp = transform.position.x;
+			/*Vector2 vec = new Vector2(transform.position.x, transform.position.y);
+			if(vec.x >0)
+			{
+				vec.x = 3f;
+				
+			}
+			else
+			{
+				vec.x = -3f;
+			}
+			vec.y = -vec.y;
+			rb.AddForce(vec*bounceForce,ForceMode2D.Impulse);*/
 		}
 		/*else if(collision.gameObject.tag == "Brick")
 		{
