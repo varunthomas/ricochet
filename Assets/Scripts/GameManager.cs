@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 	public bool gameStarted;
 	public Text HighScore;
 	public Text HighScoreText;
+	public Text Level;
+	int lvl = 1;
+	public Text LevelNum;
 	int score;
 	public bool isWin;
 	public Text textScore;
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
 
         if (isWin == true)
 		{
+			
 			var balls = GameObject.FindGameObjectsWithTag("Ball");
 			foreach (var ball in balls)
 			{
@@ -68,6 +72,8 @@ public class GameManager : MonoBehaviour
 		{
 			//winText.SetActive(true);
 			//textScore.gameObject.SetActive(false);
+			lvl++;
+			LevelNum.text = lvl.ToString();
 			SceneGenerator.instance.numBricks = 0;
 			isWin = true;
 		}
@@ -79,6 +85,8 @@ public class GameManager : MonoBehaviour
 		Debug.Log("rem bricks start " + remBricks);
 		startUI.SetActive(false);
 		textScore.gameObject.SetActive(true);
+		Level.gameObject.SetActive(true);
+		LevelNum.gameObject.SetActive(true);
 		HighScore.gameObject.SetActive(false);
 		HighScoreText.gameObject.SetActive(false);
 		SceneGenerator.instance.toggleAllBricks(true);

@@ -132,7 +132,7 @@ public class SceneGenerator : MonoBehaviour
 	}
 	public void generateBricks()
 	{
-		for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
+		for(var i = -7.704f; i <= -5f; i=i+0.642f)
 		{
 			for(var j =0; j <1; j++)
 			{
