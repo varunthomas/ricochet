@@ -9,10 +9,11 @@ public class Ball : MonoBehaviour
 	GameObject cloneBall;
 	Rigidbody2D rb;
 	Rigidbody2D rbClone;
-	private bool hasCollided = false;
-	private bool hasCollidedBrick = false;
+	//private bool hasCollided = false;
+	//private bool hasCollidedBrick = false;
 	public float bounceForce;
 	public Button PlayButton;
+	public Button AudioToggle;
 
 	void OnEnable()
 	{
@@ -27,11 +28,11 @@ public class Ball : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 	}
-	void LateUpdate()
+	/*void LateUpdate()
 	{
 		this.hasCollided = false;
 		this.hasCollidedBrick = false;
-	}
+	}*/
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 
@@ -41,7 +42,7 @@ public class Ball : MonoBehaviour
 			
 			if (SceneGenerator.instance.remBalls == 1)
 			{
-				Debug.Log("Restart called remballs 0");
+				//Debug.Log("Restart called remballs 0");
 				GameManager.instance.SetHighScore();
 				GameManager.instance.Restart();
 			}
@@ -49,7 +50,7 @@ public class Ball : MonoBehaviour
 			{
 				Destroy(gameObject);
 				SceneGenerator.instance.remBalls--;
-				Debug.Log("rem balls " + SceneGenerator.instance.remBalls);
+				//Debug.Log("rem balls " + SceneGenerator.instance.remBalls);
 			}
 		}
 		/*else if(collision.gameObject.tag == "Brick")
@@ -103,6 +104,13 @@ public class Ball : MonoBehaviour
 			
 				StartBounce();
 				PlayButton.gameObject.SetActive(true);
+				AudioToggle.gameObject.SetActive(true);
+				if(AudioManager.soundOn)
+				{
+					AudioToggle.image.sprite = mute;
+				}
+				else
+					AudioToggle.image.sprite = unmute;
 				GameManager.instance.gameStarted = true;
 				GameManager.instance.GameStart();
 			}

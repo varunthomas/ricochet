@@ -35,7 +35,7 @@ public class Brick : MonoBehaviour
 		{
 			if(this.hasCollided == true){ Debug.Log("Has collided 1"); return; }
 			this.hasCollided = true;
-			Debug.Log("collided brick");
+			//Debug.Log("collided brick");
 			GameManager.instance.ScoreUp(5);
 			//Debug.Log("Destroy brick");
 			Destroy(gameObject);

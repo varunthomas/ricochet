@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
 		{
 			//winText.SetActive(true);
 			//textScore.gameObject.SetActive(false);
+			lvl++;
+			LevelNum.text = lvl.ToString();
 			SceneGenerator.instance.numBricks = 0;
 			isWin = true;
 		}

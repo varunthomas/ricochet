@@ -9,16 +9,17 @@ public class Brick : MonoBehaviour
 	Rigidbody2D rbClone;
 	GameObject clone;
 	private float bounceForce = 5f;
+	private bool hasCollided = false;
     // Start is called before the first frame update
     void Start()
     {
 		startY = transform.position.y;
     }
 
-/*	void LateUpdate()
+	void LateUpdate()
 	{
 		this.hasCollided = false;
-	}*/
+	}
     // Update is called once per frame
 	void Update()
 	{

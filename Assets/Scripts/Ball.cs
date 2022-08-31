@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
 	//private bool hasCollidedBrick = false;
 	public float bounceForce;
 	public Button PlayButton;
+	public Button AudioToggle;
 
 	void OnEnable()
 	{
@@ -41,7 +42,7 @@ public class Ball : MonoBehaviour
 			
 			if (SceneGenerator.instance.remBalls == 1)
 			{
-				Debug.Log("Restart called remballs 0");
+				//Debug.Log("Restart called remballs 0");
 				GameManager.instance.SetHighScore();
 				GameManager.instance.Restart();
 			}
@@ -49,7 +50,7 @@ public class Ball : MonoBehaviour
 			{
 				Destroy(gameObject);
 				SceneGenerator.instance.remBalls--;
-				Debug.Log("rem balls " + SceneGenerator.instance.remBalls);
+				//Debug.Log("rem balls " + SceneGenerator.instance.remBalls);
 			}
 		}
 		/*else if(collision.gameObject.tag == "Brick")
@@ -103,6 +104,7 @@ public class Ball : MonoBehaviour
 			
 				StartBounce();
 				PlayButton.gameObject.SetActive(true);
+				AudioToggle.gameObject.SetActive(true);
 				GameManager.instance.gameStarted = true;
 				GameManager.instance.GameStart();
 			}
