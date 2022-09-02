@@ -22,6 +22,7 @@ public class SceneGenerator : MonoBehaviour
 	bool timerReached = false;
 	
 	public Sprite specialSprite;
+	public Sprite powerSprite;
 	private void Awake()
 	{
 		instance = this;
@@ -111,10 +112,15 @@ public class SceneGenerator : MonoBehaviour
 	{
 		for(var i =0; i<numBricks; i++)
 		{
-			if(Random.Range(0,5) == 0)
+			if(Random.Range(0,5) == 5)
 			{
 				brickArray[i].gameObject.tag = "SpecialBrick";
 				setSpecialSprite(brickArray[i]);
+			}
+			if(Random.Range(0,1) == 0)
+			{
+				brickArray[i].gameObject.tag = "PowerBrick";
+				setPowerSprite(brickArray[i]);
 			}
 		}
 	}
@@ -124,6 +130,13 @@ public class SceneGenerator : MonoBehaviour
 		SpriteRenderer specialBrick;
 		specialBrick = tempTile.GetComponent<SpriteRenderer>();
 		specialBrick.sprite = specialSprite;
+	}
+
+	void setPowerSprite(GameObject tempTile)
+	{
+		SpriteRenderer specialBrick;
+		specialBrick = tempTile.GetComponent<SpriteRenderer>();
+		specialBrick.sprite = powerSprite;
 	}
 	
 	public int getBrickCount()

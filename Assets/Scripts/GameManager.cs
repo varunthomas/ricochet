@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 	}
 	public void ScoreUp(int val)
 	{
-		score=score+val;
+		score=score+1;
 		if (val == 5)
 		{
 			//Debug.Log("rem bricks " + remBricks);

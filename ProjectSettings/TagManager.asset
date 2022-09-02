@@ -12,6 +12,7 @@ TagManager:
   - BoundaryTop
   - BoundaryLeft
   - BoundaryRight
+  - PowerBrick
   layers:
   - Default
   - TransparentFX

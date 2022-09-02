@@ -12,10 +12,14 @@ public class Ball : MonoBehaviour
 	Rigidbody2D rbClone;
 	//private bool hasCollided = false;
 	//private bool hasCollidedBrick = false;
-	public float bounceForce;
+	public float bounceForce = 5;
+	public static bool startTimerFlag = false;
+	public static bool resetTimer = false;
+	float timer = 0f;
 	float temp = 0f;
 	public Button PlayButton;
 	public Button AudioToggle;
+	public static List<Ball> ballsClasses = new List<Ball>();
 
 	void OnEnable()
 	{
@@ -144,18 +148,24 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+		ballsClasses.Add(this);
+		bounceForce = 5;
+		startTimerFlag = false;
+		rb.velocity = bounceForce* (rb.velocity.normalized);
+		Debug.Log("Reset bounce force in start");
+
     }
 
     // Update is called once per frame
     void Update()
     {
 		rb.velocity = bounceForce* (rb.velocity.normalized);
+		//Debug.Log("bounce force is " + bounceForce);
 		if (!GameManager.instance.gameStarted)
 		{
 			if(Input.anyKeyDown)
 			{
-			
+
 				StartBounce();
 				PlayButton.gameObject.SetActive(true);
 				AudioToggle.gameObject.SetActive(true);
@@ -163,6 +173,34 @@ public class Ball : MonoBehaviour
 				GameManager.instance.GameStart();
 			}
 		
+		}
+		
+		if (startTimerFlag == true)
+		{
+			if(resetTimer)
+			{
+				timer = 0f;
+			}
+		GameObject[] otherObjects = GameObject.FindGameObjectsWithTag("Ball");
+
+        foreach (Ball obj in ballsClasses) {
+			obj.bounceForce = 2;
+			obj.timer += Time.deltaTime;
+        }
+
+			
+			//Debug.Log("Timer is " + timer + " delta time is " + Time.deltaTime);
+			if(timer >= 5f)
+			{
+				startTimerFlag = false;
+       foreach (Ball obj in ballsClasses) {
+			obj.bounceForce = 5;
+			obj.timer = 0f;
+			resetTimer = false;
+        }
+				Debug.Log("Stopping timer " + bounceForce);
+				
+			}
 		}
 		/*if (GameManager.instance.isWin == true)
 		{

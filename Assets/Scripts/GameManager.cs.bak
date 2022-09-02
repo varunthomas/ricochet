@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
 		
 		Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-		Debug.Log(stageDimensions.x);
+		//Debug.Log(stageDimensions.x);
 		HighScore.text = PlayerPrefs.GetInt("HighScore",0).ToString();
         //remBricks = SceneGenerator.instance.getBrickCount();
 		//Debug.Log("rem bricks " + remBricks);
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 		{
 			//Debug.Log("rem bricks " + remBricks);
 			remBricks--;
-			Debug.Log("rem bricks " + remBricks);
+			//Debug.Log("rem bricks " + remBricks);
 		}
 		textScore.text = score.ToString();
 		if (remBricks == 0)
@@ -80,9 +80,9 @@ public class GameManager : MonoBehaviour
 	}
 	public void GameStart()
 	{
-		Debug.Log("Game start");
+		//Debug.Log("Game start");
 		remBricks = SceneGenerator.instance.getBrickCount();
-		Debug.Log("rem bricks start " + remBricks);
+		//Debug.Log("rem bricks start " + remBricks);
 		startUI.SetActive(false);
 		textScore.gameObject.SetActive(true);
 		Level.gameObject.SetActive(true);

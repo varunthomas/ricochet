@@ -64,4 +64,12 @@ public class Paddle : MonoBehaviour
 		}
 		
 	}
+	
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag == "PowerBrick")
+		{
+			//Brick.powerUpHit = false;
+		}
+	}
 }

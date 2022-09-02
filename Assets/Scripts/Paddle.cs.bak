@@ -41,8 +41,6 @@ public class Paddle : MonoBehaviour
 	}
 	void TouchMove()
 	{
-		if (!PauseMenu.GamePaused)
-		{
 		if(GameManager.instance.isWin == false && Input.GetMouseButton(0))
 		{
 			Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -64,6 +62,14 @@ public class Paddle : MonoBehaviour
 		{
 			rb.velocity = Vector2.zero;
 		}
+		
+	}
+	
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag == "PowerBrick")
+		{
+			Brick.powerUpHit = false;
 		}
 	}
 }

@@ -6,14 +6,22 @@ public class Brick : MonoBehaviour
 {
 
 	float startY;
+	float height = 3f;
+	float speed = 1f;
 	Rigidbody2D rbClone;
 	GameObject clone;
 	private float bounceForce = 5f;
 	private bool hasCollided = false;
+	bool powerUpHit = false;
+	public GameObject powerUpSprite;
+	GameObject clonePowerUpSprite;
+	Vector2 pos;
     // Start is called before the first frame update
     void Start()
     {
 		startY = transform.position.y;
+		
+		
     }
 
 	void LateUpdate()
@@ -23,6 +31,7 @@ public class Brick : MonoBehaviour
     // Update is called once per frame
 	void Update()
 	{
+
 
 		/*var pos = transform.position;
 		var newY = startY - height*speed;//*Mathf.Sin(Time.time * speed);
@@ -48,6 +57,16 @@ public class Brick : MonoBehaviour
 				clone = Instantiate(collision.gameObject, collision.gameObject.transform.position,collision.gameObject.transform.rotation);
 				rbClone = clone.GetComponent<Rigidbody2D>();
 				rbClone.AddForce(vec*bounceForce, ForceMode2D.Impulse);
+			}
+			if(gameObject.tag == "PowerBrick")
+			{
+
+				//powerUpHit = true;
+				clonePowerUpSprite = Instantiate(powerUpSprite, transform.position,Quaternion.identity);
+				PowerUp.instance.setStartPos(transform.position);
+				PowerUp.instance.setPowerUp(true);
+				Physics2D.IgnoreCollision(clonePowerUpSprite.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
+				
 			}
 		}
 		else if(collision.gameObject.tag == "Paddle" || collision.gameObject.tag == "FallCheck")

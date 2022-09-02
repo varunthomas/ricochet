@@ -8,7 +8,7 @@ public class BoundaryLeft : MonoBehaviour
     void Start()
     {
         Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-		Debug.Log(stageDimensions.x + " " + stageDimensions.y);
+		//Debug.Log(stageDimensions.x + " " + stageDimensions.y);
 		transform.position = new Vector3(-stageDimensions.x-0.39f,0,0);
 		
     }
