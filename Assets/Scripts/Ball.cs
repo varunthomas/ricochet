@@ -149,10 +149,18 @@ public class Ball : MonoBehaviour
     void Start()
     {
 		ballsClasses.Add(this);
-		bounceForce = 5;
-		startTimerFlag = false;
-		rb.velocity = bounceForce* (rb.velocity.normalized);
-		Debug.Log("Reset bounce force in start");
+		/*if(startTimerFlag)
+		{
+			bounceForce = 2;
+		}
+		else
+		{
+			bounceForce = 5;
+		}
+		
+		//startTimerFlag = false;
+		rb.velocity = bounceForce* (rb.velocity.normalized);*/
+		//Debug.Log("Reset bounce force in start");
 
     }
 
@@ -176,7 +184,7 @@ public class Ball : MonoBehaviour
 		
 		}
 		
-		if (startTimerFlag == true)
+/*		if (startTimerFlag == true)
 		{
 			GameObject[] otherObjects = GameObject.FindGameObjectsWithTag("Ball");
 
@@ -208,7 +216,7 @@ public class Ball : MonoBehaviour
 				Debug.Log("Stopping timer " + bounceForce);
 				
 			}
-		}
+		}*/
 		/*if (GameManager.instance.isWin == true)
 		{
 			var balls = GameObject.FindGameObjectsWithTag("Ball");

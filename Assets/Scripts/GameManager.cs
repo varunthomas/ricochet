@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 	public Text LevelNum;
 	int score;
 	public bool isWin;
+	public float timer;
+	public bool startTimer;
 	public Text textScore;
 	//public GameObject winText;
 
@@ -40,6 +42,34 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+		if (startTimer == true)
+		{
+			foreach (Ball obj in Ball.ballsClasses) {
+				obj.bounceForce = 2;
+			}
+			var balls = GameObject.FindGameObjectsWithTag("Ball");
+			/*foreach (var ball in balls)
+			{
+				 var rb = ball.GetComponent<Rigidbody2D>();
+				 Debug.Log("Slowing down " + rb.velocity);
+				 rb.velocity = .2f* (rb.velocity.normalized);
+				 Debug.Log("After Slowing down " + rb.velocity);
+			}*/
+			timer += Time.deltaTime;
+			if (timer >= 5f)
+			{
+				startTimer = false;
+				foreach (Ball obj in Ball.ballsClasses) {
+					obj.bounceForce = 5;
+				}
+				/*foreach (var ball in balls)
+				{
+					var rb = ball.GetComponent<Rigidbody2D>();
+					rb.velocity = 5* (rb.velocity.normalized);
+				}*/
+				timer = 0f;
+			}
+		}
         if (isWin == true)
 		{
 			

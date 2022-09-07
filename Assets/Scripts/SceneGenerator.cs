@@ -124,12 +124,12 @@ public class SceneGenerator : MonoBehaviour
 	{
 		for(var i =0; i<numBricks; i++)
 		{
-			if(Random.Range(0,5) == 5)
+			if(Random.Range(0,5) == 0)
 			{
 				brickArray[i].gameObject.tag = "SpecialBrick";
 				setSpecialSprite(brickArray[i]);
 			}
-			if(Random.Range(0,1) == 0)
+			if(Random.Range(0,5) == 0)
 			{
 				brickArray[i].gameObject.tag = "PowerBrick";
 				setPowerSprite(brickArray[i]);
@@ -157,11 +157,11 @@ public class SceneGenerator : MonoBehaviour
 	}
 	public void generateBricks()
 	{
-		for(var i = -7.704f; i <= -7.3f; i=i+0.642f)
+		for(var i = -7.704f; i <= 7.704f; i=i+0.642f)
 		{
-			for(var j =0; j <1; j++)
+			for(var j =0; j <10; j++)
 			{
-				if (Random.Range(0,1) == 0)
+				if (Random.Range(0,2) == 0)
 				{
 					var v = new Vector2(i, 0.324f*j);
 					//Debug.Log("looping " + numBricks + " " + v);
@@ -182,9 +182,6 @@ public class SceneGenerator : MonoBehaviour
 		rbClone.AddForce(randomDirection*bounceForce, ForceMode2D.Impulse);
 		//return Instantiate(cloneBall, dir, Quaternion.identity) as GameObject;
 	}
-	public void generatePowerUp()
-	{
-		Instantiate(powerUpSprite, new Vector2(-12.77f, -0.37f),Quaternion.identity);
-	}
+
 }
 

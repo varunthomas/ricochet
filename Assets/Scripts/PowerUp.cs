@@ -78,8 +78,10 @@ public class PowerUp : MonoBehaviour
 			if(collision.gameObject.tag == "Paddle")
 			{
 				Destroy(gameObject);
-				Ball.startTimerFlag = true;
-				Ball.resetTimer = true;
+				//Ball.startTimerFlag = true;
+				//Ball.resetTimer = true;
+				GameManager.instance.startTimer  = true;
+				GameManager.instance.timer = 0f;
 				Debug.Log("starting timer");
 				setPowerUp(false);
 			}

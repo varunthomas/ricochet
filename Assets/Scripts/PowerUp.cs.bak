@@ -22,7 +22,7 @@ public class PowerUp : MonoBehaviour
     void Start()
     {
 		Debug.Log("Activiatng power up in powerup");
-		gameObject.SetActive(true);
+		//gameObject.SetActive(true);
 		List<GameObject> objList = new List<GameObject>();
 		GameObject[] brickObjects = GameObject.FindGameObjectsWithTag("Brick");
 		GameObject[] spBrickObjects = GameObject.FindGameObjectsWithTag("SpecialBrick");
@@ -78,8 +78,10 @@ public class PowerUp : MonoBehaviour
 			if(collision.gameObject.tag == "Paddle")
 			{
 				Destroy(gameObject);
-				Ball.startTimerFlag = true;
-				Ball.resetTimer = true;
+				//Ball.startTimerFlag = true;
+				//Ball.resetTimer = true;
+				GameManager.startTimer  = true;
+				GameManager.timer = 0f;
 				Debug.Log("starting timer");
 				setPowerUp(false);
 			}
