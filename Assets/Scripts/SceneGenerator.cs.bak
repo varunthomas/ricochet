@@ -11,6 +11,7 @@ public class SceneGenerator : MonoBehaviour
 	public GameObject tile;
 	public GameObject paddle;
 	public GameObject cloneBall;
+	public GameObject powerUpSprite;
 	public Text NextLevel;
 	GameObject clone;
 	Rigidbody2D rbClone;
@@ -32,6 +33,12 @@ public class SceneGenerator : MonoBehaviour
 	//.324
     void Start()
     {
+			Debug.Log("Activating powerup");
+			//var powerUps = GameObject.FindGameObjectsWithTag("PowerUp");
+			//foreach (var powerUp in powerUps)
+			//{
+				//powerUp.SetActive(true);
+			//}	
 		
 		brickArray = new GameObject[MaxBricks];
         Debug.Log("Start called");
@@ -74,9 +81,14 @@ public class SceneGenerator : MonoBehaviour
 			{
 				Destroy(ball);
 			}
-			
-			Debug.Log("Destroyed balls");
-			Debug.Log("Genrating bricks");
+			var powerUps = GameObject.FindGameObjectsWithTag("PowerUpClone");
+			foreach (var powerUp in powerUps)
+			{
+				Destroy(powerUp);
+				
+			}			
+			//Debug.Log("Destroyed balls");
+			//Debug.Log("Genrating bricks");
 			NextLevel.gameObject.SetActive(true);
 			if (!timerReached)
 				timer += Time.deltaTime;
@@ -145,11 +157,11 @@ public class SceneGenerator : MonoBehaviour
 	}
 	public void generateBricks()
 	{
-		for(var i = -7.704f; i <= -5f; i=i+0.642f)
+		for(var i = -7.704f; i <= -7f; i=i+0.642f)
 		{
-			for(var j =0; j <2; j++)
+			for(var j =0; j <1; j++)
 			{
-				if (Random.Range(0,2) == 1)
+				if (Random.Range(0,1) == 0)
 				{
 					var v = new Vector2(i, 0.324f*j);
 					//Debug.Log("looping " + numBricks + " " + v);
@@ -169,6 +181,10 @@ public class SceneGenerator : MonoBehaviour
 		rbClone = clone.GetComponent<Rigidbody2D>();
 		rbClone.AddForce(randomDirection*bounceForce, ForceMode2D.Impulse);
 		//return Instantiate(cloneBall, dir, Quaternion.identity) as GameObject;
+	}
+	public void generatePowerUp()
+	{
+		Instantiate(powerUpSprite, new Vector2(-12.77f, -0.37f),Quaternion.identity);
 	}
 }
 

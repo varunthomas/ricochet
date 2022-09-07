@@ -63,6 +63,7 @@ public class Brick : MonoBehaviour
 
 				//powerUpHit = true;
 				clonePowerUpSprite = Instantiate(powerUpSprite, transform.position,Quaternion.identity);
+				clonePowerUpSprite.tag = "PowerUpClone";
 				PowerUp.instance.setStartPos(transform.position);
 				PowerUp.instance.setPowerUp(true);
 				Physics2D.IgnoreCollision(clonePowerUpSprite.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 

@@ -2345,6 +2345,7 @@ MonoBehaviour:
   tile: {fileID: 400772654}
   paddle: {fileID: 0}
   cloneBall: {fileID: 1440508917611527845, guid: a72b9d5306adec845a1597390befaf21, type: 3}
+  powerUpSprite: {fileID: 1275332697}
   NextLevel: {fileID: 722790661}
   numBricks: 0
   remBalls: 1
@@ -3125,6 +3126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUp
       objectReference: {fileID: 0}
+    - target: {fileID: 6253059483485729216, guid: 70af4901691dd8842bc202adb577c38d, type: 3}
+      propertyPath: m_TagString
+      value: PowerUp
+      objectReference: {fileID: 0}
     - target: {fileID: 6253059483485729218, guid: 70af4901691dd8842bc202adb577c38d, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -3173,6 +3178,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6253059483485729221, guid: 70af4901691dd8842bc202adb577c38d, type: 3}
+      propertyPath: powerUpSprite
+      value: 
+      objectReference: {fileID: 1275332697}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70af4901691dd8842bc202adb577c38d, type: 3}
 --- !u!1001 &7932215174797294193

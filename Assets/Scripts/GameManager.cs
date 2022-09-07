@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		
+		Debug.Log("Activiatng power up in gamemanager");
 		Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 		//Debug.Log(stageDimensions.x);
 		HighScore.text = PlayerPrefs.GetInt("HighScore",0).ToString();

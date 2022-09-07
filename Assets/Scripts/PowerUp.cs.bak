@@ -9,6 +9,7 @@ public class PowerUp : MonoBehaviour
 	bool powerUpFlag;
 		float startY;
 	float height = 3f;
+	
 	float speed = 0.01f;
 	float timer = 0f;
 	bool startTimerFlag;
@@ -20,6 +21,8 @@ public class PowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		Debug.Log("Activiatng power up in powerup");
+		gameObject.SetActive(true);
 		List<GameObject> objList = new List<GameObject>();
 		GameObject[] brickObjects = GameObject.FindGameObjectsWithTag("Brick");
 		GameObject[] spBrickObjects = GameObject.FindGameObjectsWithTag("SpecialBrick");
@@ -34,13 +37,22 @@ public class PowerUp : MonoBehaviour
             Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
         }
         startY = transform.position.y;
-		Debug.Log("pos " + transform.position);
+		Debug.Log("Instatiated power up start timer should be called next");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+		/*if (GameManager.instance.isWin == true)
+		{
+			Destroy(gameObject);
+		}*/
+		
+		/*if (!GameManager.instance.gameStarted)
+		{
+			Instantiate(powerUpSprite, new Vector2(-12.77f, -0.37f),Quaternion.identity);
+			GameManager.instance.gameStarted = true;
+		}	*/		
 		if(powerUpFlag == true)
 		{
 			//var newY = startY - height*speed;//*Mathf.Sin(Time.time * speed);
@@ -67,6 +79,7 @@ public class PowerUp : MonoBehaviour
 			{
 				Destroy(gameObject);
 				Ball.startTimerFlag = true;
+				Ball.resetTimer = true;
 				Debug.Log("starting timer");
 				setPowerUp(false);
 			}
