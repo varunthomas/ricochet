@@ -10,7 +10,9 @@ public class Ball : MonoBehaviour
 	public float bounceForce = 5;
 	float temp = 0f;
 	public Button PlayButton;
+	float rightHit, leftHit;
 	public Button AudioToggle;
+	bool lastSideHit;
 	public static List<Ball> ballsClasses = new List<Ball>();
 
 	void OnEnable()
@@ -47,8 +49,22 @@ public class Ball : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "BoundaryLeft")
 		{
+			leftHit = transform.position.y;
+			if (lastSideHit == true)
+			{
+				
+				if(Math.Abs(leftHit - rightHit) < 0.5f)
+				{
+					Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
+					Vector2 vec = new Vector2(transform.position.x, transform.position.y);
+				
+					vec.x = 3f;
+					rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);					
+				}
+			}
+			lastSideHit = true;
 			//Debug.Log("x " + transform.position.x + "y " + transform.position.y);
-			if(Math.Abs(temp-transform.position.x) < 1.5f)
+			/*if(Math.Abs(temp-transform.position.x) < 1.5f)
 			{
 				Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
 				Vector2 vec = new Vector2(transform.position.x, transform.position.y);
@@ -57,12 +73,26 @@ public class Ball : MonoBehaviour
 				rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);
 			}	
 			
-			temp = transform.position.x;
+			temp = transform.position.x;*/
 		}
 		else if (collision.gameObject.tag == "BoundaryRight")
 		{
+			rightHit = transform.position.y;
+			if (lastSideHit == true)
+			{
+				
+				if(Math.Abs(leftHit - rightHit) < 0.5f)
+				{
+					Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
+					Vector2 vec = new Vector2(transform.position.x, transform.position.y);
+				
+					vec.x = -3f;
+					rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);					
+				}
+			}
+			lastSideHit = true;
 			//Debug.Log("x " + transform.position.x + "y " + transform.position.y);
-			if(Math.Abs(temp-transform.position.x) < 1)
+			/*if(Math.Abs(temp-transform.position.x) < 1)
 			{
 				Debug.Log("perpendicular right x " + transform.position.x + " y " + transform.position.y);
 				Vector2 vec = new Vector2(transform.position.x, transform.position.y);
@@ -71,8 +101,12 @@ public class Ball : MonoBehaviour
 				rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);
 			}	
 			
-			temp = transform.position.x;
+			temp = transform.position.x;*/
 
+		}
+		else
+		{
+			lastSideHit = false;
 		}
 
 	}
@@ -80,6 +114,10 @@ public class Ball : MonoBehaviour
     void Start()
     {
 		ballsClasses.Add(this);
+		GameObject[] powerUps = GameObject.FindGameObjectsWithTag("PowerUpClone");
+        foreach (GameObject obj in powerUps) {
+            Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
+        }		
     }
 
     // Update is called once per frame

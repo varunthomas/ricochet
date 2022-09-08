@@ -10,7 +10,9 @@ public class Ball : MonoBehaviour
 	public float bounceForce = 5;
 	float temp = 0f;
 	public Button PlayButton;
+	float rightHit, leftHit;
 	public Button AudioToggle;
+	bool lastSideHit;
 	public static List<Ball> ballsClasses = new List<Ball>();
 
 	void OnEnable()
@@ -47,32 +49,42 @@ public class Ball : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "BoundaryLeft")
 		{
-			//Debug.Log("x " + transform.position.x + "y " + transform.position.y);
-			if(Math.Abs(temp-transform.position.x) < 1.5f)
+			leftHit = transform.position.y;
+			if (lastSideHit == true)
 			{
-				Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
-				Vector2 vec = new Vector2(transform.position.x, transform.position.y);
 				
-				vec.x = 3f;
-				rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);
-			}	
-			
-			temp = transform.position.x;
+				if(Math.Abs(leftHit - rightHit) < 0.5f)
+				{
+					//Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
+					Vector2 vec = new Vector2(transform.position.x, transform.position.y);
+				
+					vec.x = 3f;
+					rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);					
+				}
+			}
+			lastSideHit = true;
+
 		}
 		else if (collision.gameObject.tag == "BoundaryRight")
 		{
-			//Debug.Log("x " + transform.position.x + "y " + transform.position.y);
-			if(Math.Abs(temp-transform.position.x) < 1)
+			rightHit = transform.position.y;
+			if (lastSideHit == true)
 			{
-				Debug.Log("perpendicular right x " + transform.position.x + " y " + transform.position.y);
-				Vector2 vec = new Vector2(transform.position.x, transform.position.y);
 				
-				vec.x = -3f;
-				rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);
-			}	
-			
-			temp = transform.position.x;
-
+				if(Math.Abs(leftHit - rightHit) < 0.5f)
+				{
+					//Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
+					Vector2 vec = new Vector2(transform.position.x, transform.position.y);
+				
+					vec.x = -3f;
+					rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);					
+				}
+			}
+			lastSideHit = true;
+		}
+		else
+		{
+			lastSideHit = false;
 		}
 
 	}
