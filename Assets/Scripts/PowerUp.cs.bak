@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-	public static PowerUp instance;
-	bool powerUpFlag;
+	//public static PowerUp instance;
+	//bool powerUpFlag;
 	float speed = 0.01f;
 	float timer = 0f;
 	
-	private void Awake()
+	/*private void Awake()
 	{
 		instance = this;
-	}
+	}*/
     // Start is called before the first frame update
     void Start()
     {
@@ -29,25 +29,23 @@ public class PowerUp : MonoBehaviour
         foreach (GameObject obj in objList) {
             Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
         }
-        //startY = transform.position.y;
-		Debug.Log("Instatiated power up start timer should be called next");
     }
 
     // Update is called once per frame
     void Update()
     {
-		if(powerUpFlag == true)
-		{
-			transform.position = new Vector2(transform.position.x , transform.position.y - speed);
+		//if(powerUpFlag == true)
+		//{
+			//transform.position = new Vector2(transform.position.x , transform.position.y - speed);
 		
 			//TODO: Change hardcoding
-			if (transform.position.y <= -5.77)
+			/*if (transform.position.y <= -5.77)
 			{
 				Debug.Log("Setting to false");
 				Destroy(gameObject);
 				setPowerUp(false);
-			}
-		}
+			}*/
+		//}
         
     }
 	
@@ -60,12 +58,17 @@ public class PowerUp : MonoBehaviour
 				GameManager.instance.startTimer  = true;
 				GameManager.instance.timer = 0f;
 				Debug.Log("starting timer");
-				setPowerUp(false);
+				//setPowerUp(false);
+			}
+			else if(collision.gameObject.tag == "FallCheck")
+			{
+				Destroy(gameObject);
+				Debug.Log("Destroy powerup failcheck");
 			}
 	}
 	
-	public void setPowerUp(bool isPowerUp)
+	/*public void setPowerUp(bool isPowerUp)
 	{
 		powerUpFlag = isPowerUp;
-	}
+	}*/
 }

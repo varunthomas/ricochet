@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-	public static PowerUp instance;
-	bool powerUpFlag;
+
 	float speed = 0.01f;
 	float timer = 0f;
-	
-	private void Awake()
-	{
-		instance = this;
-	}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,18 +29,6 @@ public class PowerUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(powerUpFlag == true)
-		{
-			transform.position = new Vector2(transform.position.x , transform.position.y - speed);
-		
-			//TODO: Change hardcoding
-			if (transform.position.y <= -5.77)
-			{
-				Debug.Log("Setting to false");
-				Destroy(gameObject);
-				setPowerUp(false);
-			}
-		}
         
     }
 	
@@ -58,12 +41,12 @@ public class PowerUp : MonoBehaviour
 				GameManager.instance.startTimer  = true;
 				GameManager.instance.timer = 0f;
 				Debug.Log("starting timer");
-				setPowerUp(false);
+				//setPowerUp(false);
 			}
-	}
-	
-	public void setPowerUp(bool isPowerUp)
-	{
-		powerUpFlag = isPowerUp;
+			else if(collision.gameObject.tag == "FallCheck")
+			{
+				Destroy(gameObject);
+				Debug.Log("Destroy powerup failcheck");
+			}
 	}
 }

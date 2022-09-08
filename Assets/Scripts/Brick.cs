@@ -63,7 +63,10 @@ public class Brick : MonoBehaviour
 
 				clonePowerUpSprite = Instantiate(powerUpSprite, transform.position,Quaternion.identity);
 				clonePowerUpSprite.tag = "PowerUpClone";
-				PowerUp.instance.setPowerUp(true);
+				Vector2 randomDirection = new Vector2(0,-1);
+				var rbClonepw = clonePowerUpSprite.GetComponent<Rigidbody2D>();
+				rbClonepw.AddForce(randomDirection*2, ForceMode2D.Impulse);
+				//PowerUp.instance.setPowerUp(true);
 				
 			}
 		}

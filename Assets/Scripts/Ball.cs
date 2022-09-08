@@ -80,6 +80,10 @@ public class Ball : MonoBehaviour
     void Start()
     {
 		ballsClasses.Add(this);
+		GameObject[] powerUps = GameObject.FindGameObjectsWithTag("PowerUpClone");
+        foreach (GameObject obj in powerUps) {
+            Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
+        }		
     }
 
     // Update is called once per frame
