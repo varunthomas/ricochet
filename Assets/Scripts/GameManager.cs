@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	public Text Level;
 	int lvl = 1;
 	public Text LevelNum;
+	public GameObject QuitUI;
 	int score;
 	public bool isWin;
 	public float timer;
@@ -42,6 +43,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+		 if (Input.GetKeyDown(KeyCode.Escape)) 
+		 {
+			QuitUI.SetActive(true);
+			Time.timeScale = 0f;			
+		 }
 		if (startTimer == true)
 		{
 			foreach (Ball obj in Ball.ballsClasses) {

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	public Text Level;
 	int lvl = 1;
 	public Text LevelNum;
+	public GameObject QuitUI;
 	int score;
 	public bool isWin;
 	public float timer;
@@ -42,6 +43,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+		 if (Input.GetKeyDown(KeyCode.Escape)) 
+		 {
+			QuitUI.SetActive(true); 
+		 }
 		if (startTimer == true)
 		{
 			foreach (Ball obj in Ball.ballsClasses) {
@@ -59,11 +64,14 @@ public class GameManager : MonoBehaviour
 			if (timer >= 5f)
 			{
 				startTimer = false;
-				foreach (var ball in balls)
+				foreach (Ball obj in Ball.ballsClasses) {
+					obj.bounceForce = 5;
+				}
+				/*foreach (var ball in balls)
 				{
 					var rb = ball.GetComponent<Rigidbody2D>();
 					rb.velocity = 5* (rb.velocity.normalized);
-				}
+				}*/
 				timer = 0f;
 			}
 		}

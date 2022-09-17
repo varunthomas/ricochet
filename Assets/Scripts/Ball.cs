@@ -8,7 +8,6 @@ public class Ball : MonoBehaviour
 {
 	Rigidbody2D rb;
 	public float bounceForce = 5;
-	float temp = 0f;
 	public Button PlayButton;
 	float rightHit, leftHit;
 	public Button AudioToggle;

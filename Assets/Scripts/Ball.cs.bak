@@ -55,7 +55,7 @@ public class Ball : MonoBehaviour
 				
 				if(Math.Abs(leftHit - rightHit) < 0.5f)
 				{
-					Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
+					//Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
 					Vector2 vec = new Vector2(transform.position.x, transform.position.y);
 				
 					vec.x = 3f;
@@ -63,17 +63,7 @@ public class Ball : MonoBehaviour
 				}
 			}
 			lastSideHit = true;
-			//Debug.Log("x " + transform.position.x + "y " + transform.position.y);
-			/*if(Math.Abs(temp-transform.position.x) < 1.5f)
-			{
-				Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
-				Vector2 vec = new Vector2(transform.position.x, transform.position.y);
-				
-				vec.x = 3f;
-				rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);
-			}	
-			
-			temp = transform.position.x;*/
+
 		}
 		else if (collision.gameObject.tag == "BoundaryRight")
 		{
@@ -83,7 +73,7 @@ public class Ball : MonoBehaviour
 				
 				if(Math.Abs(leftHit - rightHit) < 0.5f)
 				{
-					Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
+					//Debug.Log("perpendicular x " + transform.position.x + " y " + transform.position.y);
 					Vector2 vec = new Vector2(transform.position.x, transform.position.y);
 				
 					vec.x = -3f;
@@ -91,18 +81,6 @@ public class Ball : MonoBehaviour
 				}
 			}
 			lastSideHit = true;
-			//Debug.Log("x " + transform.position.x + "y " + transform.position.y);
-			/*if(Math.Abs(temp-transform.position.x) < 1)
-			{
-				Debug.Log("perpendicular right x " + transform.position.x + " y " + transform.position.y);
-				Vector2 vec = new Vector2(transform.position.x, transform.position.y);
-				
-				vec.x = -3f;
-				rb.AddForce(vec*bounceForce, ForceMode2D.Impulse);
-			}	
-			
-			temp = transform.position.x;*/
-
 		}
 		else
 		{
