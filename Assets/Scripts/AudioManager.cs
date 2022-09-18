@@ -8,9 +8,21 @@ public class AudioManager : MonoBehaviour
 	public Button AudioToggle;
 	public Sprite mute;
 	public Sprite unmute;
+	public static AudioManager instance;
+	AudioSource source;
+	public AudioClip slowDownClip;
+	public AudioClip hitClip;
+	
+	void Awake()
+	{
+		instance = this;
+	}
     // Start is called before the first frame update
     void Start()
     {
+		source = GetComponent<AudioSource>();
+		
+		
         if(soundOn)
 		{
 			AudioToggle.image.sprite = unmute;
@@ -43,4 +55,17 @@ public class AudioManager : MonoBehaviour
 			AudioListener.volume = 1f;
 		}
 	}
+	
+	public void PlayPowerUpAudio()
+	{
+		source.clip = slowDownClip;
+		source.Play();
+	}
+	
+	public void PlayHitAudio()
+	{
+		source.clip = hitClip;
+		source.Play();		
+	}
+	
 }

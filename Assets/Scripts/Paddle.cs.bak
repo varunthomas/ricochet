@@ -8,6 +8,7 @@ public class Paddle : MonoBehaviour
 	Rigidbody2D rb;
 	public float moveSpeed;
 	Vector2 originalPos;
+	public AudioSource source;
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -15,6 +16,7 @@ public class Paddle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		source = GetComponent<AudioSource>();
 		originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);   
     }
 
@@ -67,9 +69,11 @@ public class Paddle : MonoBehaviour
 	
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if(collision.gameObject.tag == "PowerBrick")
+		if(collision.gameObject.tag == "PowerUp")
 		{
-			Brick.powerUpHit = false;
+			source.Play();
+			Debug.Log("Audio play");
+			//Brick.powerUpHit = false;
 		}
 	}
 }

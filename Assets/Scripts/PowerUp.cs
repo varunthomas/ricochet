@@ -7,10 +7,13 @@ public class PowerUp : MonoBehaviour
 
 	float speed = 0.01f;
 	float timer = 0f;
+	//AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
+		//source = GetComponent<AudioSource>();
+		
 		List<GameObject> objList = new List<GameObject>();
 		GameObject[] brickObjects = GameObject.FindGameObjectsWithTag("Brick");
 		GameObject[] spBrickObjects = GameObject.FindGameObjectsWithTag("SpecialBrick");
@@ -37,9 +40,11 @@ public class PowerUp : MonoBehaviour
 
 			if(collision.gameObject.tag == "Paddle")
 			{
-				Destroy(gameObject);
+				AudioManager.instance.PlayPowerUpAudio();
+				Destroy(gameObject, 0.1f);
 				GameManager.instance.startTimer  = true;
 				GameManager.instance.timer = 0f;
+				
 				Debug.Log("starting timer");
 				//setPowerUp(false);
 			}

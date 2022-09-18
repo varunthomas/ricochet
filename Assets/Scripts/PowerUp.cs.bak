@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-	//public static PowerUp instance;
-	//bool powerUpFlag;
+
 	float speed = 0.01f;
 	float timer = 0f;
-	
-	/*private void Awake()
-	{
-		instance = this;
-	}*/
+	//AudioSource source;
+
     // Start is called before the first frame update
     void Start()
     {
+		//source = GetComponent<AudioSource>();
+		
 		List<GameObject> objList = new List<GameObject>();
 		GameObject[] brickObjects = GameObject.FindGameObjectsWithTag("Brick");
 		GameObject[] spBrickObjects = GameObject.FindGameObjectsWithTag("SpecialBrick");
@@ -34,18 +32,6 @@ public class PowerUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//if(powerUpFlag == true)
-		//{
-			//transform.position = new Vector2(transform.position.x , transform.position.y - speed);
-		
-			//TODO: Change hardcoding
-			/*if (transform.position.y <= -5.77)
-			{
-				Debug.Log("Setting to false");
-				Destroy(gameObject);
-				setPowerUp(false);
-			}*/
-		//}
         
     }
 	
@@ -54,9 +40,11 @@ public class PowerUp : MonoBehaviour
 
 			if(collision.gameObject.tag == "Paddle")
 			{
-				Destroy(gameObject);
+				SlowDownAudio.instance.PlayPowerUpAudio();
+				Destroy(gameObject, 0.1f);
 				GameManager.instance.startTimer  = true;
 				GameManager.instance.timer = 0f;
+				
 				Debug.Log("starting timer");
 				//setPowerUp(false);
 			}
@@ -66,9 +54,4 @@ public class PowerUp : MonoBehaviour
 				Debug.Log("Destroy powerup failcheck");
 			}
 	}
-	
-	/*public void setPowerUp(bool isPowerUp)
-	{
-		powerUpFlag = isPowerUp;
-	}*/
 }

@@ -81,6 +81,11 @@ public class Ball : MonoBehaviour
 			}
 			lastSideHit = true;
 		}
+		else if (collision.gameObject.tag == "Paddle")
+		{
+			lastSideHit = false;
+			AudioManager.instance.PlayHitAudio();
+		}
 		else
 		{
 			lastSideHit = false;
