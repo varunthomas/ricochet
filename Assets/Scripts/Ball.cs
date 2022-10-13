@@ -41,10 +41,10 @@ public class Ball : MonoBehaviour
 			}
 			else
 			{
-				Destroy(gameObject);
 				SceneGenerator.instance.remBalls--;
 				//Debug.Log("rem balls " + SceneGenerator.instance.remBalls);
 			}
+			Destroy(gameObject);
 		}
 		else if (collision.gameObject.tag == "BoundaryLeft")
 		{

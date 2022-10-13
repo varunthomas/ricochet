@@ -15,8 +15,11 @@ public class GameManager : MonoBehaviour
 	int lvl = 1;
 	public Text LevelNum;
 	public GameObject QuitUI;
+	public GameObject ContinueUI;
+	public bool continue_game = false;
 	int score;
 	public bool isWin;
+	bool ad_shown = false;
 	public float timer;
 	public bool startTimer;
 	public Text textScore;
@@ -92,7 +95,16 @@ public class GameManager : MonoBehaviour
     }
 	public void Restart()
 	{
-		SceneManager.LoadScene("Game");
+		if (ad_shown)
+		{
+			SceneManager.LoadScene("Game");
+		}
+		else
+		{	
+			ContinueUI.SetActive(true);
+			ad_shown = true;
+		}
+		//SceneManager.LoadScene("Game");
 	}
 	public void ScoreUp(int val)
 	{

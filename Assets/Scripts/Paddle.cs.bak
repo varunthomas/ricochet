@@ -8,7 +8,7 @@ public class Paddle : MonoBehaviour
 	Rigidbody2D rb;
 	public float moveSpeed;
 	Vector2 originalPos;
-	public AudioSource source;
+	//public AudioSource source;
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -16,7 +16,7 @@ public class Paddle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		source = GetComponent<AudioSource>();
+		//source = GetComponent<AudioSource>();
 		originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y);   
     }
 
@@ -55,11 +55,11 @@ public class Paddle : MonoBehaviour
 				rb.velocity = Vector2.right*moveSpeed;
 			}
 		}
-		else if( GameManager.instance.isWin == true)
+		else if( GameManager.instance.isWin == true || GameManager.instance.continue_game == true)
 		{
 			transform.position = originalPos;
 			rb.velocity = Vector2.zero;
-		}
+		}	
 		else
 		{
 			rb.velocity = Vector2.zero;
@@ -71,8 +71,8 @@ public class Paddle : MonoBehaviour
 	{
 		if(collision.gameObject.tag == "PowerUp")
 		{
-			source.Play();
-			Debug.Log("Audio play");
+			//source.Play();
+			//Debug.Log("Audio play");
 			//Brick.powerUpHit = false;
 		}
 	}

@@ -55,11 +55,12 @@ public class Paddle : MonoBehaviour
 				rb.velocity = Vector2.right*moveSpeed;
 			}
 		}
-		else if( GameManager.instance.isWin == true)
+		else if( GameManager.instance.isWin == true || GameManager.instance.continue_game == true)
 		{
 			transform.position = originalPos;
 			rb.velocity = Vector2.zero;
-		}
+			GameManager.instance.continue_game = false;
+		}	
 		else
 		{
 			rb.velocity = Vector2.zero;
